@@ -10,6 +10,7 @@ import com.atividade_to_list.to_list.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TarefaService {
@@ -56,5 +57,14 @@ public class TarefaService {
                 tarefa.getHorarioTarefa()
         );
 
+    }
+    public String deletar(Long id){
+        Optional<Tarefa> tarefa = tarefaRepository.findById(id);
+        if (tarefa.isEmpty()){
+            return "Usuario não exite";
+        }else {
+            tarefaRepository.deleteById(id);
+            return "Usuario foi deletado";
+        }
     }
 }
