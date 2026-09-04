@@ -6,6 +6,8 @@ import com.atividade_to_list.to_list.entitites.Usuario;
 import com.atividade_to_list.to_list.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
@@ -27,6 +29,15 @@ public class UsuarioService {
                 usuariosalvo.getEmail()
 
         );
+    }
+
+    public List<UsuarioResponse>ListarUsuarios(){
+        return usuarioRepository.findAll().stream()
+                .map(usuario -> new UsuarioResponse(
+                        usuario.getId(),
+                        usuario.getNome(),
+                        usuario.getEmail()
+                )).toList();
     }
 
 }
