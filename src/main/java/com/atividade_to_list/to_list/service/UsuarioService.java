@@ -39,5 +39,17 @@ public class UsuarioService {
                         usuario.getEmail()
                 )).toList();
     }
+    public UsuarioResponse buscarporId(Long id){
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException
+                        ("Usuario não encontrado com id" + id));
+
+        return new UsuarioResponse(
+                usuario.getId(),
+                usuario.getNome(),
+                usuario.getEmail()
+        );
+
+    }
 
 }
