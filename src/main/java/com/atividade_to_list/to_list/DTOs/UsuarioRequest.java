@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class usuariorequest {
+public class UsuarioRequest {
     @NotBlank(message = "não pode estar vazio ")
     private String nome;
     @NotBlank(message = "o Email não pode estar em branco")
