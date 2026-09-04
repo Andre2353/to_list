@@ -9,6 +9,8 @@ import com.atividade_to_list.to_list.entitites.Usuario;
 import com.atividade_to_list.to_list.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TarefaService {
     private final TarefaRepository tarefaRepository;
@@ -30,5 +32,13 @@ public class TarefaService {
                 tarefaSalva.getEtapatarefa(),
                 tarefaSalva.getHorarioTarefa()
         );
+    }public List<TarefaResponse> listartarefas() {
+        return tarefaRepository.findAll().stream()
+                .map(tarefa -> new TarefaResponse(
+                        tarefa.getId(),
+                        tarefa.getNome(),
+                        tarefa.getEtapatarefa(),
+                        tarefa.getHorarioTarefa()
+                )).toList();
     }
 }
