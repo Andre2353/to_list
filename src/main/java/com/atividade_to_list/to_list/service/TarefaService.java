@@ -18,6 +18,7 @@ public class TarefaService {
     public TarefaService(TarefaRepository tarefaRepository) {
         this.tarefaRepository = tarefaRepository;
     }
+
     public TarefaResponse criarTarefa(TarefaRequest request) {
         Tarefa tarefa = new Tarefa();
         tarefa.setNome(request.getNome());
@@ -32,7 +33,9 @@ public class TarefaService {
                 tarefaSalva.getEtapatarefa(),
                 tarefaSalva.getHorarioTarefa()
         );
-    }public List<TarefaResponse> listartarefas() {
+    }
+
+    public List<TarefaResponse> listartarefas() {
         return tarefaRepository.findAll().stream()
                 .map(tarefa -> new TarefaResponse(
                         tarefa.getId(),
@@ -40,5 +43,18 @@ public class TarefaService {
                         tarefa.getEtapatarefa(),
                         tarefa.getHorarioTarefa()
                 )).toList();
+    }
+
+    public TarefaResponse buscarporId(Long id) {
+        Tarefa tarefa = tarefaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException
+                        ("Usuario não encontrado com id" + id));
+        return new TarefaResponse(
+                tarefa.getId(),
+                tarefa.getNome(),
+                tarefa.getEtapatarefa(),
+                tarefa.getHorarioTarefa()
+        );
+
     }
 }
