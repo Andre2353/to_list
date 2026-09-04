@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 //fala para o codigo que é uma entidade
 @Entity
 // defini o nome que vai aparecer nas tabelas do banco de dados
-@Table(name = "usuario")
+@Table(name = "tarefa")
 //Gera automaticamente os métodos Getters, Setters
 @Data
 // cria um contrutor vazio
