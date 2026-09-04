@@ -58,13 +58,32 @@ public class TarefaService {
         );
 
     }
-    public String deletar(Long id){
+
+    public String deletar(Long id) {
         Optional<Tarefa> tarefa = tarefaRepository.findById(id);
-        if (tarefa.isEmpty()){
+        if (tarefa.isEmpty()) {
             return "Usuario não exite";
-        }else {
+        } else {
             tarefaRepository.deleteById(id);
             return "Usuario foi deletado";
         }
+    }
+
+    public TarefaResponse atualizarId(Long id, TarefaRequest request) {
+        Tarefa tarefaExistente = tarefaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com id: " + id));
+
+        tarefaExistente.setNome(request.getNome());
+        tarefaExistente.setEtapatarefa(request.getEtapatarefa());
+        tarefaExistente.setHorarioTarefa(request.getHorarioTarefa());
+
+        Tarefa atualizando = tarefaRepository.save(tarefaExistente);
+
+        return new TarefaResponse(
+                atualizando.getId(),
+                atualizando.getNome(),
+                atualizando.getEtapatarefa(),
+                atualizando.getHorarioTarefa()
+        );
     }
 }
