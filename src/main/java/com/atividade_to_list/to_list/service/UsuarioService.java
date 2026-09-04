@@ -7,6 +7,7 @@ import com.atividade_to_list.to_list.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -50,6 +51,15 @@ public class UsuarioService {
                 usuario.getEmail()
         );
 
+    }
+    public String deletar(Long id){
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if (usuario.isEmpty()){
+            return "Usuario não exite";
+        }else {
+            usuarioRepository.deleteById(id);
+            return "Usuario foi deletado";
+        }
     }
 
 }
