@@ -62,7 +62,8 @@ public class UsuarioService {
         }
     }
     public UsuarioResponse atualizarid(Long id, UsuarioRequest request){
-        Usuario usuarioexistente = usuarioRepository.findById(id).get();
+        Usuario usuarioexistente = usuarioRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Usuario não encontrado  com id :" +id));
         usuarioexistente.setNome(request.getNome());
         usuarioexistente.setEmail(request.getEmail());
         usuarioexistente.setSenha(request.getSenha());
