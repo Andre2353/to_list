@@ -4,7 +4,7 @@ Uma API RESTful desenvolvida em Java com Spring Boot para o gerenciamento de tar
 
 ## 🚀 Tecnologias Utilizadas
 
-* **Java 17+**
+* **Java 25**
 * **Spring Boot** (Spring Web)
 * **Spring Data JPA** (Mapeamento Objeto-Relacional)
 * **MySQL Driver** (Integração com banco de dados MySQL)
