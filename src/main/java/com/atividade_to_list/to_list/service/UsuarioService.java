@@ -61,5 +61,19 @@ public class UsuarioService {
             return "Usuario foi deletado";
         }
     }
+    public UsuarioResponse atualizarid(Long id, UsuarioRequest request){
+        Usuario usuarioexistente = usuarioRepository.findById(id).get();
+        usuarioexistente.setNome(request.getNome());
+        usuarioexistente.setEmail(request.getEmail());
+        usuarioexistente.setSenha(request.getSenha());
+
+        Usuario atualizando = usuarioRepository.save(usuarioexistente);
+
+        return  new UsuarioResponse(
+                atualizando.getId(),
+                atualizando.getNome(),
+                atualizando.getEmail()
+        );
+    }
 
 }
