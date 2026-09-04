@@ -1,40 +1,24 @@
-# 📝 Agenda de Tarefas API
+# 📝 API To-Do List
 
-API RESTful para gerenciamento de tarefas (CRUD) desenvolvida em **Java 25** com **Spring Boot 3**. O projeto foi estruturado seguindo boas práticas de arquitetura em camadas, validações de dados e DTOs (*Data Transfer Objects*) desacoplados entre **Request** e **Response** utilizando *Java Records*.
+Uma API RESTful desenvolvida em Java com Spring Boot para o gerenciamento de tarefas e usuários. O projeto aplica boas práticas de arquitetura, separação de responsabilidades (Service, Repository, Controller) e o padrão DTO (Data Transfer Object) para garantir a segurança dos dados.
 
----
+## 🚀 Tecnologias Utilizadas
 
-## 🛠️ Tecnologias e Ferramentas
+* **Java 17+**
+* **Spring Boot** (Spring Web)
+* **Spring Data JPA** (Mapeamento Objeto-Relacional)
+* **MySQL Driver** (Integração com banco de dados MySQL)
+* **Validation / Hibernate Validator** (Validação de campos, regras de e-mail e tamanho de senhas)
+* **Lombok** (Geração automática de Getters, Setters e Construtores para código mais limpo)
 
-* **Linguagem:** Java 25
-* **Framework:** Spring Boot 3.x
-  * Spring Data JPA
-  * Spring Web
-  * Spring Boot Starter Validation
-* **Banco de Dados:** MySQL 8.x (Gerenciado via MySQL Workbench)
-* **Utilitários:** Lombok (geração de boilerplate na Entity)
-* **Gerenciador de Dependências:** Maven
+## ⚙️ Funcionalidades
 
----
+* **Cadastro de Usuários:** Validação rigorosa de dados de entrada (`@NotBlank`, `@Email`, `@Size`) através do `UsuarioRequest`.
+* **Listagem Segura de Usuários:** Retorno de dados formatados via `UsuarioResponse`, garantindo que informações sensíveis (como senhas) nunca vazem para o cliente.
+* **Gerenciamento de Tarefas:** Estrutura pronta para criar tarefas com datas, descrições e status de andamento usando Enums (CANCELADA,INICIADA,PAUSADA,CONCLUIDA).
 
-## 🏗️ Arquitetura do Projeto
+## 🛠️ Como rodar o projeto localmente
 
-A aplicação adota uma organização em camadas bem definidas no pacote `com.exemplo.agendatarefas`:
-
-```text
-src/main/java/com/exemplo/agendatarefas/
-├── controller/
-│   └── TarefaController.java       # Mapeamento dos endpoints HTTP (REST)
-├── dto/
-│   ├── request/
-│   │   ├── TarefaCreateRequest.java # Record DTO para criação de tarefas
-│   │   └── TarefaUpdateRequest.java # Record DTO para atualização de tarefas
-│   └── response/
-│       └── TarefaResponse.java      # Record DTO para respostas da API
-├── entity/
-│   ├── StatusTarefa.java            # Enum com os status (PENDENTE, EM_ANDAMENTO, CONCLUIDA)
-│   └── Tarefa.java                  # Mapeamento ORM da tabela "tb_tarefas"
-├── repository/
-│   └── TarefaRepository.java        # Interface de persistência (Spring Data JPA)
-└── service/
-    └── TarefaService.java           # Regras de negócio e conversões DTO <-> Entity
+**1. Clone o repositório**
+```bash
+git clone [https://github.com/Andre2353/to_list.git](https://github.com/Andre2353/to_list.git)
